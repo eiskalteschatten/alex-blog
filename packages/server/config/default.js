@@ -8,10 +8,7 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     ssl: process.env.DB_SSL === 'true',
-    dialect: process.env.DB_DIALECT || 'postgres',
-  },
-  redis: {
-    url: process.env.REDIS_URL,
+    dialect: process.env.DB_DIALECT || 'mariadb',
   },
   auth: {
     session: {

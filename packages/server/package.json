@@ -34,7 +34,6 @@
     "passport-jwt": "^4.0.0",
     "pino": "^8.5.0",
     "pino-pretty": "^10.0.0",
-    "redis": "^4.0.6",
     "sequelize": "^6.19.0",
     "sequelize-migration-wrapper": "^1.0.1",
     "uuid": "^9.0.0"

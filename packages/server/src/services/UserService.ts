@@ -7,7 +7,6 @@ import type { ChangePasswordData, SerializedUser, UserLoginReply, UserUpdate } f
 import { passwordRegex } from '@frb/shared';
 
 import User from '~/db/models/User';
-import redisClient from '~/db/redis';
 import logger from '~/lib/logger';
 import { HttpError } from '~/lib/errors';
 import { JwtPayload } from '~/auth/interfaces';
