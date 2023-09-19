@@ -1,47 +1,36 @@
-import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize';
+import { Model, CreationOptional } from 'sequelize';
+import { AllowNull, AutoIncrement, Column, CreatedAt, PrimaryKey, Table, Unique, UpdatedAt } from 'sequelize-typescript';
 
-import sequelize from '~/db/sequelize';
+@Table({
+  tableName: 'users',
+})
+export default class User extends Model {
+  @AutoIncrement
+  @PrimaryKey
+  @Unique(true)
+  @Column
+  id: CreationOptional<number>;
 
-export default class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
-  declare id: CreationOptional<number>;
-  declare email: string;
-  declare firstName: string;
-  declare lastName: string;
-  declare password: string;
-  declare createdAt: CreationOptional<Date>;
-  declare updatedAt: CreationOptional<Date>;
+  @Unique(true)
+  @AllowNull(false)
+  @Column
+  email: string;
+
+  @AllowNull(false)
+  @Column
+  firstName: string;
+
+  @AllowNull(false)
+  @Column
+  lastName: string;
+
+  @AllowNull(false)
+  @Column
+  password: string;
+
+  @CreatedAt
+  createdAt: CreationOptional<Date>;
+
+  @UpdatedAt
+  updatedAt: CreationOptional<Date>;
 }
-
-User.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-      unique: true,
-    },
-    email: {
-      type: new DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    firstName: {
-      type: new DataTypes.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: new DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: new DataTypes.STRING,
-      allowNull: false,
-    },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
-  },
-  {
-    sequelize,
-    tableName: 'users',
-  }
-);
