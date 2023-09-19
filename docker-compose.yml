@@ -1,25 +1,17 @@
 version: "3.8"
 
 services:
-  postgres:
-    image: postgres:14-alpine
-    container_name: tfrb_postgres
-    restart: always
+  db:
+    image: mariadb:10
+    ports:
+      - "3306:3306"
     volumes:
-      - "tfrb_postgresql_data:/var/lib/postgresql/data"
+      - "tbb_mariadb_data:/var/lib/mysql"
     environment:
-      POSTGRES_DB: tfrb
-      POSTGRES_USER: tfrb
-      POSTGRES_PASSWORD: tfrb
-    ports:
-      - "5432:5432"
-
-  redis:
-    image: redis:alpine
-    restart: always
-    container_name: tfrb_redis
-    ports:
-      - "6379:6379"
+      - MYSQL_ROOT_PASSWORD=frb
+      - MYSQL_DATABASE=frb
+      - MYSQL_USER=frb
+      - MYSQL_PASSWORD=frb
 
 volumes:
-  tfrb_postgresql_data:
+  tbb_mariadb_data:
