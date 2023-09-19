@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken';
 import sequelize from 'sequelize';
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
-import type { ChangePasswordData, SerializedUser, UserLoginReply, UserUpdate } from '@tfrb/shared';
-import { passwordRegex } from '@tfrb/shared';
+import type { ChangePasswordData, SerializedUser, UserLoginReply, UserUpdate } from '@frb/shared';
+import { passwordRegex } from '@frb/shared';
 
 import User from '~/db/models/User';
 import redisClient from '~/db/redis';

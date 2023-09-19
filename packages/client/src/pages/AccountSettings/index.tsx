@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { ChangePasswordData, UserUpdate, passwordRegex } from '@tfrb/shared';
+import { ChangePasswordData, UserUpdate, passwordRegex } from '@frb/shared';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { changePassword, update } from '@/store/entities/account';

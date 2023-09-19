@@ -1,5 +1,5 @@
 {
-  "name": "@tfrb/shared",
+  "name": "@frb/shared",
   "version": "0.1.0",
   "files": [
     "dist",

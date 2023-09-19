@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { t } from 'i18next';
 import axios from 'axios';
-import type { ChangePasswordData, SerializedUser, UserLoginReply, UserRegistration, UserUpdate } from '@tfrb/shared';
+import type { ChangePasswordData, SerializedUser, UserLoginReply, UserRegistration, UserUpdate } from '@frb/shared';
 
 import customAxios from '@/lib/axios';
 import { setGlobalInfo } from './ui';

@@ -1,5 +1,5 @@
 {
-  "name": "@tfrb/client",
+  "name": "@frb/client",
   "version": "0.1.0",
   "files": [
     "build",
@@ -18,7 +18,7 @@
     "@popperjs/core": "^2.11.6",
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/react": "^14.0.0",
-    "@tfrb/shared": "^0.1.0",
+    "@frb/shared": "^0.1.0",
     "@vitejs/plugin-react-swc": "^3.3.0",
     "axios": "^1.1.0",
     "clsx": "^2.0.0",
