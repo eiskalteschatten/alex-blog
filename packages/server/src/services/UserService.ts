@@ -115,21 +115,20 @@ export default class UserService {
     return isValid;
   }
 
-  static async logout(id: number): Promise<void> {
-    // await AuthSession.destroy({
-    //   where: {
-    //     fkUser: id,
-    //   },
-    // });
-    // await Promise.all(Object.values(tokenSuffixes).map(suffix => redisClient.del(`${id}${suffix}`)));
-
-    // TODO: remove all tokens from the current session only
+  static async logout(id: number, sessionId: string): Promise<void> {
+    await AuthSession.destroy({
+      where: {
+        sessionId,
+        fkUser: id,
+      },
+    });
   }
 
   static async generateToken(id: number, ttl: number, secret: string): Promise<string> {
     return jwt.sign({
       id,
       uuid: uuidv4(),
+      sessionId: uuidv4(),
     } as JwtPayload,
     secret,
     {
@@ -163,14 +162,33 @@ export default class UserService {
 
   static async saveJwtToDb(id: number, type: TokenType, token: string, secret: string): Promise<void> {
     const decoded = jwt.verify(token, secret) as JwtPayload;
+    const expirationDate = new Date(decoded.exp * 1000);
 
-    await AuthSession.create({
+    const session = await AuthSession.findOne({
+      where: {
+        fkUser: id,
+        sessionId: decoded.sessionId,
+        tokenType: type,
+        tokenUUID: decoded.uuid,
+        expirationDate,
+      },
+    });
+
+    const toSave = {
+      sessionId: decoded.sessionId,
       token,
       tokenType: type,
       tokenUUID: decoded.uuid,
-      expirationDate: new Date(decoded.exp * 1000),
+      expirationDate,
       fkUser: id,
-    });
+    };
+
+    if (session) {
+      await session.update(toSave);
+    }
+    else {
+      await AuthSession.create(toSave);
+    }
   }
 
   static async userTokenIsValid(payload: JwtPayload, type: TokenType = 'access'): Promise<User | undefined> {

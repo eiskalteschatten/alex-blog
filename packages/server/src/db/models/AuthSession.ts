@@ -15,6 +15,10 @@ export default class AuthSession extends Model {
   @Column
   override id: CreationOptional<number>;
 
+  @AllowNull(false)
+  @Column
+  sessionId: string;
+
   @Unique(true)
   @AllowNull(false)
   @Column

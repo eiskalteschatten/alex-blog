@@ -5,9 +5,9 @@ import { HttpError } from '~/lib/errors';
 import UserService from '~/services/UserService';
 
 export default async (app: FastifyInstance) => {
-  type LoginRequest = FastifyRequest<{ 
-    Body: { 
-      email: string; 
+  type LoginRequest = FastifyRequest<{
+    Body: {
+      email: string;
       password: string;
     };
   }>;
