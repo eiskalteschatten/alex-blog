@@ -1,4 +1,4 @@
-import { CreationOptional } from 'sequelize';
+import { CreationOptional, DataTypes } from 'sequelize';
 import { AllowNull, AutoIncrement, BelongsTo, Column, CreatedAt, ForeignKey, Model, PrimaryKey, Table, Unique, UpdatedAt } from 'sequelize-typescript';
 
 import User from './User';
@@ -12,11 +12,15 @@ export default class AuthSession extends Model {
   @AutoIncrement
   @PrimaryKey
   @Unique(true)
-  @Column
+  @Column({
+    type: DataTypes.INTEGER,
+  })
   override id: CreationOptional<number>;
 
   @AllowNull(false)
-  @Column
+  @Column({
+    field: 'session_id',
+  })
   sessionId: string;
 
   @Unique(true)
@@ -24,7 +28,6 @@ export default class AuthSession extends Model {
   @Column
   token: string;
 
-  @Unique(true)
   @AllowNull(false)
   @Column({
     field: 'token_type',
@@ -39,9 +42,12 @@ export default class AuthSession extends Model {
   tokenUUID: string;
 
   @AllowNull(false)
-  @Column
+  @Column({
+    field: 'expiration_date',
+  })
   expirationDate: Date;
 
+  @AllowNull(false)
   @ForeignKey(() => User)
   @Column({
     field: 'fk_user',

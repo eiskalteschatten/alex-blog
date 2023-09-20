@@ -1,7 +1,6 @@
 import 'dotenv/config';
 
 import './app';
-import './db/redis';
 import { setupSequelize } from './db/sequelize';
 import { setupPassport } from './auth';
 
