@@ -3,6 +3,7 @@ import config from 'config';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { UserLoginReply } from '@frb/shared';
+import { Op } from 'sequelize';
 
 import logger from '~/lib/logger';
 import { JwtPayload, UserWithSessionId } from '~/auth/interfaces';
@@ -130,9 +131,9 @@ export default class AuthService {
           tokenUUID: payload.uuid,
           tokenType: type,
           sessionId: payload.sessionId,
-          // expirationDate: {
-          //   $gte: new Date(),
-          // },
+          expirationDate: {
+            [Op.gte]: new Date(),
+          },
         },
         include: [{
           model: User,
