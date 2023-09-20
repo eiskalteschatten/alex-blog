@@ -29,7 +29,7 @@ const LeftSide: React.FC = () => {
           className={styles.logo}
         >
           <LogoDarkLight width={logoSize} height={logoSize} />
-          <span>Typescript Fastify React Boilerplate</span>
+          <span>Fastify React Blog</span>
         </Link>
       ) : (
         <div className={styles.mobileWrapper}>
