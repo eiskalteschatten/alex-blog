@@ -2,7 +2,7 @@ import config from 'config';
 import fastifyPassport from '@fastify/passport';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 
-import UserService from '~/services/UserService';
+import AuthService from '~/services/AuthService';
 
 import { JwtPayload } from './interfaces';
 
@@ -24,7 +24,7 @@ const jwtTempConfig = {
 export const setupPassport = () => {
   fastifyPassport.use('jwt', new JwtStrategy(jwtConfig, async (jwtPayload: JwtPayload, done: Function): Promise<void> => {
     try {
-      const user = await UserService.userTokenIsValid(jwtPayload);
+      const user = await AuthService.userTokenIsValid(jwtPayload);
 
       if (!user) {
         return done(null, false);
@@ -39,7 +39,7 @@ export const setupPassport = () => {
 
   fastifyPassport.use('jwt-refresh-token', new JwtStrategy(jwtRefreshConfig, async (jwtPayload: JwtPayload, done: Function): Promise<void> => {
     try {
-      const user = await UserService.userTokenIsValid(jwtPayload, 'refresh');
+      const user = await AuthService.userTokenIsValid(jwtPayload, 'refresh');
 
       if (!user) {
         return done(null, false);
@@ -54,7 +54,7 @@ export const setupPassport = () => {
 
   fastifyPassport.use('jwt-temp-token', new JwtStrategy(jwtTempConfig, async (jwtPayload: JwtPayload, done: Function): Promise<void> => {
     try {
-      const user = await UserService.userTokenIsValid(jwtPayload, 'temp');
+      const user = await AuthService.userTokenIsValid(jwtPayload, 'temp');
 
       if (!user) {
         return done(null, false);
