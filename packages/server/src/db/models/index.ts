@@ -1,5 +1,7 @@
 import User from './User';
+import AuthSession from './AuthSession';
 
-export default {
+export default [
   User,
-};
+  AuthSession,
+];

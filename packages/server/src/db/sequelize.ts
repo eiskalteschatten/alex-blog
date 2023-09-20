@@ -1,13 +1,19 @@
-import { Options, Sequelize } from 'sequelize';
+import { Options } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
 import config from 'config';
 import { setupMigration, migrate } from 'sequelize-migration-wrapper';
 import path from 'path';
 
 import logger from '~/lib/logger';
 
+import models from './models';
+
 const options = config.get<Options>('db');
 
-const sequelize = new Sequelize(options);
+const sequelize = new Sequelize({
+  ...options,
+  models,
+});
 
 export default sequelize;
 

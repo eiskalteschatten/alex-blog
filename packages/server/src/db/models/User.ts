@@ -1,5 +1,5 @@
-import { Model, CreationOptional } from 'sequelize';
-import { AllowNull, AutoIncrement, Column, CreatedAt, PrimaryKey, Table, Unique, UpdatedAt } from 'sequelize-typescript';
+import { CreationOptional, DataTypes } from 'sequelize';
+import { AllowNull, AutoIncrement, Column, CreatedAt, Model, PrimaryKey, Table, Unique, UpdatedAt } from 'sequelize-typescript';
 
 @Table({
   tableName: 'users',
@@ -8,8 +8,10 @@ export default class User extends Model {
   @AutoIncrement
   @PrimaryKey
   @Unique(true)
-  @Column
-  id: CreationOptional<number>;
+  @Column({
+    type: DataTypes.INTEGER,
+  })
+  override id: CreationOptional<number>;
 
   @Unique(true)
   @AllowNull(false)
@@ -29,8 +31,8 @@ export default class User extends Model {
   password: string;
 
   @CreatedAt
-  createdAt: CreationOptional<Date>;
+  override createdAt: CreationOptional<Date>;
 
   @UpdatedAt
-  updatedAt: CreationOptional<Date>;
+  override updatedAt: CreationOptional<Date>;
 }
