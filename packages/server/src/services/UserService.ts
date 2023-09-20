@@ -169,8 +169,6 @@ export default class UserService {
         fkUser: id,
         sessionId: decoded.sessionId,
         tokenType: type,
-        tokenUUID: decoded.uuid,
-        expirationDate,
       },
     });
 
@@ -198,6 +196,7 @@ export default class UserService {
           fkUser: payload.id,
           tokenUUID: payload.uuid,
           tokenType: type,
+          sessionId: payload.sessionId,
           expirationDate: {
             $gte: new Date(),
           },
