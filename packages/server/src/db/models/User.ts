@@ -1,12 +1,13 @@
 import { CreationOptional, DataTypes } from 'sequelize';
 import { AllowNull, AutoIncrement, Column, CreatedAt, HasMany, Model, PrimaryKey, Table, Unique, UpdatedAt } from 'sequelize-typescript';
+import { User as UserInterface } from '@frb/shared';
 
 import AuthSession from './AuthSession';
 
 @Table({
   tableName: 'users',
 })
-export default class User extends Model {
+export default class User extends Model<UserInterface> {
   @AutoIncrement
   @PrimaryKey
   @Unique(true)

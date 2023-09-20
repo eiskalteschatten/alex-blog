@@ -26,13 +26,13 @@ export default async (app: FastifyInstance) => {
   });
 
   app.post('/logout', fastifyPreValidationJwt, async (req: FastifyRequest, reply: FastifyReply) => {
-    const userId = req.user?.id;
+    const { user } = req;
 
-    if (!userId) {
+    if (!user) {
       throw new HttpError('No user could be found!', 500);
     }
 
-    await UserService.logout(userId);
+    await UserService.logout(user.id, user.sessionId);
     reply.status(204).send();
   });
 

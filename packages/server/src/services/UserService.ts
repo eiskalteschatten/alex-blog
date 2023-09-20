@@ -9,7 +9,7 @@ import { passwordRegex } from '@frb/shared';
 import User from '~/db/models/User';
 import logger from '~/lib/logger';
 import { HttpError } from '~/lib/errors';
-import { JwtPayload } from '~/auth/interfaces';
+import { JwtPayload, UserWithSessionId } from '~/auth/interfaces';
 import AuthSession, { TokenType } from '~/db/models/AuthSession';
 
 export default class UserService {
@@ -191,7 +191,7 @@ export default class UserService {
     }
   }
 
-  static async userTokenIsValid(payload: JwtPayload, type: TokenType = 'access'): Promise<User | undefined> {
+  static async userTokenIsValid(payload: JwtPayload, type: TokenType = 'access'): Promise<UserWithSessionId | undefined> {
     try {
       const session = await AuthSession.findOne({
         where: {
@@ -210,7 +210,10 @@ export default class UserService {
 
       if (session && session.user) {
         const user = await User.findByPk(payload.id);
-        return user;
+        return {
+          ...user,
+          sessionId: payload.sessionId,
+        };
       }
     }
     catch (error) {
