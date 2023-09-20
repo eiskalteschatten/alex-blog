@@ -10,15 +10,7 @@ import User from '~/db/models/User';
 import logger from '~/lib/logger';
 import { HttpError } from '~/lib/errors';
 import { JwtPayload } from '~/auth/interfaces';
-
-type TokenType = 'access' | 'refresh' | 'temp';
-type TokenSuffixes = { [key in TokenType]: string; };
-
-const tokenSuffixes: TokenSuffixes = {
-  access: '-access-token',
-  refresh: '-refresh-token',
-  temp: '-temp-token',
-};
+import AuthSession, { TokenType } from '~/db/models/AuthSession';
 
 export default class UserService {
   user: User;
@@ -124,7 +116,14 @@ export default class UserService {
   }
 
   static async logout(id: number): Promise<void> {
-    await Promise.all(Object.values(tokenSuffixes).map(suffix => redisClient.del(`${id}${suffix}`)));
+    // await AuthSession.destroy({
+    //   where: {
+    //     fkUser: id,
+    //   },
+    // });
+    // await Promise.all(Object.values(tokenSuffixes).map(suffix => redisClient.del(`${id}${suffix}`)));
+
+    // TODO: remove all tokens from the current session only
   }
 
   static async generateToken(id: number, ttl: number, secret: string): Promise<string> {
@@ -139,65 +138,61 @@ export default class UserService {
   }
 
   static async generateJwt(id: number): Promise<string> {
-    await redisClient.del(`${id}${tokenSuffixes.access}`);
-
     const ttl = config.get<number>('jwt.ttl');
     const secret = config.get<string>('jwt.secret');
     const token = await UserService.generateToken(id, ttl, secret);
-    await UserService.saveJwtToRedis(id, 'access', token);
+    await UserService.saveJwtToDb(id, 'access', token, secret);
     return token;
   }
 
   static async generateRefreshToken(id: number): Promise<string> {
-    await redisClient.del(`${id}${tokenSuffixes.refresh}`);
-
     const ttl = config.get<number>('jwt.refreshToken.ttl');
     const secret = config.get<string>('jwt.refreshToken.secret');
     const token = await UserService.generateToken(id, ttl, secret);
-    await UserService.saveJwtToRedis(id, 'refresh', token);
+    await UserService.saveJwtToDb(id, 'refresh', token, secret);
     return token;
   }
 
   static async generateTempJwt(id: number): Promise<string> {
-    await redisClient.del(`${id}${tokenSuffixes.temp}`);
-
     const ttl = config.get<number>('jwt.tempToken.ttl');
     const secret = config.get<string>('jwt.tempToken.secret');
     const token = await UserService.generateToken(id, ttl, secret);
-    await UserService.saveJwtToRedis(id, 'temp', token);
+    await UserService.saveJwtToDb(id, 'temp', token, secret);
     return token;
   }
 
-  static async saveJwtToRedis(id: number, type: TokenType, jwt: string): Promise<void> {
-    await redisClient.set(`${id}${tokenSuffixes[type]}`, jwt);
+  static async saveJwtToDb(id: number, type: TokenType, token: string, secret: string): Promise<void> {
+    const decoded = jwt.verify(token, secret) as JwtPayload;
+
+    await AuthSession.create({
+      token,
+      tokenType: type,
+      tokenUUID: decoded.uuid,
+      expirationDate: new Date(decoded.exp * 1000),
+      fkUser: id,
+    });
   }
 
   static async userTokenIsValid(payload: JwtPayload, type: TokenType = 'access'): Promise<User | undefined> {
     try {
-      const token = await redisClient.get(`${payload.id}${tokenSuffixes[type]}`);
+      const session = await AuthSession.findOne({
+        where: {
+          fkUser: payload.id,
+          tokenUUID: payload.uuid,
+          tokenType: type,
+          expirationDate: {
+            $gte: new Date(),
+          },
+        },
+        include: [{
+          model: User,
+          as: 'user',
+        }],
+      });
 
-      if (token) {
-        let secret: string;
-
-        switch (type) {
-          case 'access':
-          default:
-            secret = config.get<string>('jwt.secret');
-            break;
-          case 'refresh':
-            secret = config.get<string>('jwt.refreshToken.secret');
-            break;
-          case 'temp':
-            secret = config.get<string>('jwt.tempToken.secret');
-            break;
-        }
-
-        const decodedToken = jwt.verify(token, secret) as JwtPayload;
-
-        if (decodedToken && decodedToken.uuid === payload.uuid) {
-          const user = await User.findByPk(payload.id);
-          return user;
-        }
+      if (session && session.user) {
+        const user = await User.findByPk(payload.id);
+        return user;
       }
     }
     catch (error) {
