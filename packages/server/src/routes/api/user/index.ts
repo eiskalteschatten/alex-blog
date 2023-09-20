@@ -5,6 +5,7 @@ import User from '~/db/models/User';
 import { HttpError } from '~/lib/errors';
 import UserService from '~/services/UserService';
 import { fastifyPreValidationJwt } from '~/auth/fastify';
+import AuthService from '~/services/AuthService';
 
 export default async (app: FastifyInstance) => {
   type RegistrationRequest = FastifyRequest<{ Body: { registrationData: User } }>;
@@ -16,10 +17,11 @@ export default async (app: FastifyInstance) => {
     }
 
     const userService = new UserService();
-    const user = await userService.register(registrationData);
+    await userService.register(registrationData);
+    const authService = new AuthService(userService);
 
-    const accessToken = await UserService.generateJwt(user.id);
-    const refreshToken = await UserService.generateRefreshToken(user.id);
+    const accessToken = await authService.generateJwt();
+    const refreshToken = await authService.generateRefreshToken();
 
     reply.send({
       user: userService.serializeUser(),
