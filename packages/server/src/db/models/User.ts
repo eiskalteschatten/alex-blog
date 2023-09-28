@@ -1,8 +1,6 @@
 import { CreationOptional, DataTypes } from 'sequelize';
-import { AllowNull, AutoIncrement, Column, CreatedAt, HasMany, Model, PrimaryKey, Table, Unique, UpdatedAt } from 'sequelize-typescript';
+import { AllowNull, AutoIncrement, Column, CreatedAt, Model, PrimaryKey, Table, Unique, UpdatedAt } from 'sequelize-typescript';
 import { User as UserInterface } from '@ab/shared';
-
-import AuthSession from './AuthSession';
 
 @Table({
   tableName: 'users',
@@ -32,9 +30,6 @@ export default class User extends Model<UserInterface> {
   @AllowNull(false)
   @Column
   password: string;
-
-  @HasMany(() => AuthSession)
-  sessions: AuthSession[];
 
   @CreatedAt
   override createdAt: CreationOptional<Date>;

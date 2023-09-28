@@ -1,6 +1,6 @@
-import { UserWithSessionId } from './auth/interfaces';
+import User from './db/models/User';
 
 declare module 'fastify' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface PassportUser extends UserWithSessionId {}
+  interface PassportUser extends User {}
 }
