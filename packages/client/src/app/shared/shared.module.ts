@@ -6,11 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { ButtonWithSpinnerComponent } from './button-with-spinner/button-with-spinner.component';
-
 @NgModule({
   declarations: [
-    ButtonWithSpinnerComponent
   ],
   imports: [
     MatFormFieldModule,
@@ -21,7 +18,6 @@ import { ButtonWithSpinnerComponent } from './button-with-spinner/button-with-sp
     MatProgressSpinnerModule,
   ],
   exports: [
-    ButtonWithSpinnerComponent,
   ],
 })
 export class SharedModule {}
