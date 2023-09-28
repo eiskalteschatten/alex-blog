@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UserRegistration, UserLogin, UserLoginReply, SerializedUser, RefreshAccessTokenReply } from '@ab/shared';
 import { Observable } from 'rxjs';
 
-import { environment } from '../../environments/environment';
+import { environment } from '~environments/environment';
 
 @Injectable({
   providedIn: 'root'

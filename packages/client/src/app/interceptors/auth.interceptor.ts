@@ -9,7 +9,7 @@ import {
 import { Observable, catchError, mergeMap, throwError } from 'rxjs';
 import { RefreshAccessTokenReply } from '@ab/shared';
 
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '~/services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
