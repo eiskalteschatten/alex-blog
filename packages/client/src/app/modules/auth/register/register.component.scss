@@ -1,0 +1,15 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  gap: 5px;
+
+  .misc-errors {
+    margin-bottom: 20px;
+  }
+}
+
+.footer {
+  text-align: center;
+  margin-top: 15px;
+}
