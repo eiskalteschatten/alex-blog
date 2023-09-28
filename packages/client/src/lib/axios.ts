@@ -1,4 +1,5 @@
 import axios, { AxiosHeaders } from 'axios';
+import { t } from 'i18next';
 
 import { dispatch, getState } from '@/store';
 import { logout, setAccessToken } from '@/store/entities/account';
@@ -46,6 +47,7 @@ instance.interceptors.response.use(response => {
 
   const goToLogin = async (): Promise<void> => {
     config._retry = false;
+    dispatch(setGlobalError(t('account:sessionExpired')));
     await dispatch(logout());
     return Promise.resolve();
   };

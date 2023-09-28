@@ -18,4 +18,5 @@ export default {
   changeYourPassword: 'Change Your Password',
   accountInfoUpdatedSuccessfully: 'Your account information was updated successfully.',
   passwordChangedSuccessfully: 'Your password was changed successfully.',
+  sessionExpired: 'Your session has expired. Please log in again.',
 };
