@@ -1,0 +1,8 @@
+.button {
+  position: relative;
+
+  .spinner {
+    position: absolute;
+    z-index: 100;
+  }
+}
