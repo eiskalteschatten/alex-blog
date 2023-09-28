@@ -6,7 +6,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - "tbb_mariadb_data:/var/lib/mysql"
+      - "ab_mariadb_data:/var/lib/mysql"
     environment:
       - MYSQL_ROOT_PASSWORD=ab
       - MYSQL_DATABASE=ab
@@ -14,4 +14,4 @@ services:
       - MYSQL_PASSWORD=ab
 
 volumes:
-  tbb_mariadb_data:
+  ab_mariadb_data:
