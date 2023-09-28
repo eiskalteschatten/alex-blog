@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserLoginReply, passwordRegex } from '@ab/shared';
 
-import { AuthService } from '../../../core/services/auth.service';
-import { emailValidationRegex } from '../../../shared/helpers/email';
+import { AuthService } from '../../../services/auth.service';
+import { emailValidationRegex } from '../../../helpers/email';
 
 @Component({
   selector: 'app-register',
