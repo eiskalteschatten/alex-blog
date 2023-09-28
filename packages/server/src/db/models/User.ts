@@ -1,6 +1,6 @@
 import { CreationOptional, DataTypes } from 'sequelize';
 import { AllowNull, AutoIncrement, Column, CreatedAt, HasMany, Model, PrimaryKey, Table, Unique, UpdatedAt } from 'sequelize-typescript';
-import { User as UserInterface } from '@frb/shared';
+import { User as UserInterface } from '@ab/shared';
 
 import AuthSession from './AuthSession';
 

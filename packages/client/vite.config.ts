@@ -11,7 +11,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['@frb/shared'],
+    include: ['@ab/shared'],
   },
   build: {
     commonjsOptions: {

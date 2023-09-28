@@ -1,5 +1,5 @@
 import { JwtPayload as JwtPayloadExternal } from 'jsonwebtoken';
-import { User } from '@frb/shared';
+import { User } from '@ab/shared';
 
 export interface JwtPayload extends JwtPayloadExternal {
   id: number;

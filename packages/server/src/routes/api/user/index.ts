@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply, FastifyInstance } from 'fastify';
-import { ChangePasswordData, UserUpdate } from '@frb/shared';
+import { ChangePasswordData, UserUpdate } from '@ab/shared';
 
 import User from '~/db/models/User';
 import { HttpError } from '~/lib/errors';

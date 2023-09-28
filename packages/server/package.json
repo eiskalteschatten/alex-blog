@@ -1,5 +1,5 @@
 {
-  "name": "@frb/server",
+  "name": "@ab/server",
   "version": "0.1.0",
   "files": [
     "dist",
@@ -23,8 +23,8 @@
     "@fastify/passport": "^2.2.0",
     "@fastify/secure-session": "^7.1.0",
     "@fastify/static": "^6.5.0",
-    "@frb/client": "^0.1.0",
-    "@frb/shared": "^0.1.0",
+    "@ab/client": "^0.1.0",
+    "@ab/shared": "^0.1.0",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.7",
     "dotenv": "^16.0.0",

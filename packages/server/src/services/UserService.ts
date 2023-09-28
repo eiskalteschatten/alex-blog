@@ -1,7 +1,7 @@
 import sequelize from 'sequelize';
 import bcrypt from 'bcryptjs';
-import type { ChangePasswordData, SerializedUser, UserUpdate } from '@frb/shared';
-import { passwordRegex, User as UserInterface } from '@frb/shared';
+import type { ChangePasswordData, SerializedUser, UserUpdate } from '@ab/shared';
+import { passwordRegex, User as UserInterface } from '@ab/shared';
 
 import User from '~/db/models/User';
 import { HttpError } from '~/lib/errors';

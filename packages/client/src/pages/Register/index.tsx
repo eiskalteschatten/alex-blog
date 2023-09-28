@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { UserRegistration, passwordRegex } from '@frb/shared';
+import { UserRegistration, passwordRegex } from '@ab/shared';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { register as registerUser } from '@/store/entities/account';

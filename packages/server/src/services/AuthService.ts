@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import config from 'config';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { UserLoginReply } from '@frb/shared';
+import { UserLoginReply } from '@ab/shared';
 import { Op } from 'sequelize';
 
 import logger from '~/lib/logger';
