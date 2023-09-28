@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-
-import tsconfig from '../tsconfig.json';
+import { promises as fsPromises } from 'node:fs';
+import path from 'node:path';
 
 import logger from './lib/logger';
+
+import tsconfig from '../tsconfig.json';
 
 const { outDir, baseUrl, paths } = tsconfig.compilerOptions;
 
@@ -16,12 +16,7 @@ async function setupSymlinks(): Promise<void> {
 
     alias = alias.replace('*', '');
 
-    const firstPartOfAlias = './node_modules';
-    const fullAlias = path.resolve(firstPartOfAlias, alias);
-
-    if (!fs.existsSync(firstPartOfAlias)) {
-      fs.mkdirSync(firstPartOfAlias);
-    }
+    const fullAlias = path.resolve('./node_modules', alias);
 
     for (let source of sources) {
       source = source.replace('*', '');
@@ -34,7 +29,14 @@ async function setupSymlinks(): Promise<void> {
       logger.info('- ' + fullAlias + ' -> ' + sourcePath);
 
       try {
-        fs.symlinkSync(sourcePath, fullAlias);
+        await fsPromises.unlink(fullAlias);
+      }
+      catch (error) {
+        // May not be set already
+        //logger.error(error);
+      }
+      try {
+        await fsPromises.symlink(sourcePath, fullAlias);
       }
       catch (error) {
         logger.error(error);
