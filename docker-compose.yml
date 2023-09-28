@@ -8,10 +8,10 @@ services:
     volumes:
       - "tbb_mariadb_data:/var/lib/mysql"
     environment:
-      - MYSQL_ROOT_PASSWORD=frb
-      - MYSQL_DATABASE=frb
-      - MYSQL_USER=frb
-      - MYSQL_PASSWORD=frb
+      - MYSQL_ROOT_PASSWORD=ab
+      - MYSQL_DATABASE=ab
+      - MYSQL_USER=ab
+      - MYSQL_PASSWORD=ab
 
 volumes:
   tbb_mariadb_data:
