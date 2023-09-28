@@ -1,4 +1,5 @@
 import axios, { AxiosHeaders } from 'axios';
+import { t } from 'i18next';
 
 import { dispatch, getState } from '@/store';
 import { logout, setAccessToken } from '@/store/entities/account';
@@ -46,16 +47,12 @@ instance.interceptors.response.use(response => {
 
   const goToLogin = async (): Promise<void> => {
     config._retry = false;
+    dispatch(setGlobalError(t('account:sessionExpired')));
     await dispatch(logout());
     return Promise.resolve();
   };
 
   dispatchIsLoading(false);
-
-  // Always allow a logout
-  if (config.url === '/api/auth/logout') {
-    return Promise.resolve();
-  }
 
   if (error.response.status === 401 && !config._retry) {
     config._retry = true;

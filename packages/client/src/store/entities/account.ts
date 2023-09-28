@@ -39,7 +39,6 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk(
   'account/logout',
   async (_, thunkAPI) => {
-    await customAxios.post<UserLoginReply>('/api/auth/logout');
     // TODO
     // thunkAPI.dispatch(removeAllData());
   }
@@ -94,6 +93,9 @@ export const slice = createSlice({
     },
     clearAccountError(state) {
       state.accountError = undefined;
+    },
+    setAccountError(state, action: PayloadAction<string>) {
+      state.accountError = action.payload;
     },
   },
   extraReducers(builder) {
@@ -191,7 +193,8 @@ export const slice = createSlice({
     });
 
     builder.addCase(update.rejected, (state, action) => {
-      state.accountError = t('errors:anErrorOccurred');
+      // TODO: add a global error
+      // state. = t('errors:anErrorOccurred');
       state.isLoading = false;
       console.error(action.error);
     });
@@ -208,7 +211,8 @@ export const slice = createSlice({
     });
 
     builder.addCase(changePassword.rejected, (state, action) => {
-      state.accountError = t('errors:anErrorOccurred');
+      // TODO: add a global error
+      // state. = t('errors:anErrorOccurred');
       state.isLoading = false;
       console.error(action.error);
     });
@@ -220,6 +224,7 @@ export const {
   setAccessToken,
   setRefreshToken,
   clearAccountError,
+  setAccountError,
 } = slice.actions;
 
 export const reducer = slice.reducer;
