@@ -6,7 +6,7 @@ import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthRoutingModule } from './auth-routing.module';
-import { SharedMaterialModule } from '../../shared/modules/material.module';
+import { SharedMaterialModule } from '../shared/material.module';
 
 @NgModule({
   declarations: [

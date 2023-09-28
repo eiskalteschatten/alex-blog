@@ -5,8 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedMaterialModule } from './shared/modules/material.module';
-import { httpInterceptorProviders } from './core/interceptors';
+import { SharedMaterialModule } from './modules/shared/material.module';
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [
