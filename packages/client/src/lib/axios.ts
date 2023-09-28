@@ -52,11 +52,6 @@ instance.interceptors.response.use(response => {
 
   dispatchIsLoading(false);
 
-  // Always allow a logout
-  if (config.url === '/api/auth/logout') {
-    return Promise.resolve();
-  }
-
   if (error.response.status === 401 && !config._retry) {
     config._retry = true;
     const refreshToken = getState().account.refreshToken || '';
