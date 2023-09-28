@@ -10,7 +10,11 @@ export interface User {
 
 export type SerializedUser = Omit<User, 'password' | 'createdAt' | 'updatedAt'>;
 export type UserRegistration = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
-export type UserUpdate = Omit<User, 'id' | 'password' | 'createdAt' | 'updatedAt'>;
+
+export interface UserLogin {
+  email: string;
+  password: string;
+}
 
 export interface UserLoginReply {
   user: SerializedUser;
@@ -18,7 +22,6 @@ export interface UserLoginReply {
   refreshToken: string;
 }
 
-export interface ChangePasswordData {
-  password: string;
-  currentPassword: string;
+export interface RefreshAccessTokenReply {
+  accessToken: string;
 }
