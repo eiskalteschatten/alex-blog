@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SharedModule } from '~/shared/shared.module';
+
 import { AccountComponent } from './account.component';
 import { AccountRoutingModule } from './account-routing.module';
-import { SharedMaterialModule } from '../shared/material.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { SharedMaterialModule } from '../shared/material.module';
   imports: [
     CommonModule,
     AccountRoutingModule,
-    SharedMaterialModule
+    SharedModule
   ]
 })
 export class AccountModule { }
