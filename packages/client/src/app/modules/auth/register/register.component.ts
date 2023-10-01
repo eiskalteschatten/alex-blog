@@ -8,7 +8,7 @@ import { AuthService } from '~/services/auth.service';
 import { emailValidationRegex } from '~/helpers/email';
 
 @Component({
-  selector: 'app-register',
+  selector: 'blog-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
