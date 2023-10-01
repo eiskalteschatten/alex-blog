@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.menuItem {
+  flex-grow: 1;
+  cursor: pointer;
+  user-select: none;
+  font-size: .9em;
+
+  a {
+    color: var(--color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color);
+    }
+  }
+}

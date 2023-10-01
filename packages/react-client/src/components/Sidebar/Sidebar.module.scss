@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+
+.sidebar {
+  min-width: 235px;
+  height: 100%;
+  overflow: auto;
+  padding: 10px 5px;
+  position: relative;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-color);
+
+  @media (min-width: $lgMin) {
+    border-left: 1px solid $lightBorderColor;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    @media (min-width: $lgMin) {
+      border-left: 1px solid darken($darkBorderColor, 10%);
+    }
+  }
+}

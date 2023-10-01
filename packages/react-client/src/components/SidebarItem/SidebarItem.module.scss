@@ -1,0 +1,54 @@
+@import "../../styles/variables";
+
+.sidebarItem {
+  color: var(--color);
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  border-radius: 5px;
+  transition: background-color 150ms;
+  text-decoration: none;
+  user-select: none;
+  gap: 8px;
+
+  &:hover {
+    text-decoration: none;
+    background-color: darken($lightBg, 10%);
+    color: var(--color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: lighten($darkBg, 10%);
+    }
+  }
+
+  &:active {
+    background-color: darken($lightBg, 15%);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: lighten($darkBg, 15%);
+    }
+  }
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  &.selected {
+    opacity: 1;
+    background-color: darken($lightBg, 20%);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: lighten($darkBg, 20%);
+    }
+  }
+
+  &.marginBottom {
+    margin-bottom: 25px;
+  }
+}
+
+.icon {
+  font-size: .9em;
+}
