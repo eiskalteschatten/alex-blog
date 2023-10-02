@@ -1,5 +1,5 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'blog-input',
@@ -18,7 +18,7 @@ export class InputComponent implements ControlValueAccessor {
 
   @Input() required = false;
   @Input() type = 'text';
-  @Input() formControlName: string | number | null = null;
+  @Input() control: any = new FormControl();
   @Input() label = '';
 
   writeValue(value: string): void {
