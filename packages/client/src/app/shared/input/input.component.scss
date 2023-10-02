@@ -39,13 +39,13 @@
   .input {
     background-color: transparent;
     outline: none;
-    padding: 4px 10px;
+    padding: 6px;
     border: none;
     color: $lightColor;
 
     &.large {
       font-size: 1.1em;
-      padding: 8px 14px;
+      padding: 8px;
     }
 
     @media (prefers-color-scheme: dark) {
