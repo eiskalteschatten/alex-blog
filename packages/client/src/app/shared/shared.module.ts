@@ -8,10 +8,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { InputComponent } from './input/input.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
-    InputComponent
+    InputComponent,
+    CardComponent,
+    CardComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import { InputComponent } from './input/input.component';
     FormsModule,
     ReactiveFormsModule,
     InputComponent,
+    CardComponent,
   ],
 })
 export class SharedModule {}
