@@ -6,12 +6,12 @@ import { authGuard, reverseAuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+    loadChildren: () => import('./modules/admin/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivateChild: [authGuard],
   },
   {
     path: 'account',
-    loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule),
+    loadChildren: () => import('./modules/admin/account/account.module').then(m => m.AccountModule),
     canActivateChild: [authGuard],
   },
   {
