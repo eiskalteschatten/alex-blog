@@ -36,17 +36,25 @@ export class LoginComponent implements OnInit {
   get password() { return this.loginForm.get('password'); }
 
   get emailError(): string | undefined {
-    if (this.email?.errors?.['required'] && (this.email?.touched || this.email?.dirty)) {
+    if (!this.email?.touched && !this.email?.dirty) {
+      return;
+    }
+
+    if (this.email?.errors?.['required']) {
       return 'An email address is required.';
     }
 
-    if (this.email?.errors?.['pattern'] && (this.email?.touched || this.email?.dirty)) {
+    if (this.email?.errors?.['pattern']) {
       return 'The email address you entered is invalid.';
     }
   }
 
   get passwordError(): string | undefined {
-    if (this.password?.errors?.['required'] && (this.password?.touched || this.password?.dirty)) {
+    if (!this.password?.touched && !this.password?.dirty) {
+      return;
+    }
+
+    if (this.password?.errors?.['required']) {
       return 'A password is required.';
     }
   }
