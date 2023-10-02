@@ -1,93 +1,91 @@
-<div>
-  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="form">
-    <mat-form-field appearance="outline">
-      <mat-label>Email Address</mat-label>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Email Address</mat-label>
 
-      <input matInput required formControlName="email" type="email">
+    <input matInput required formControlName="email" type="email">
 
-      <mat-error *ngIf="email?.errors?.['required'] && (email?.touched || email?.dirty)">
-        An email address is required.
-      </mat-error>
+    <mat-error *ngIf="email?.errors?.['required'] && (email?.touched || email?.dirty)">
+      An email address is required.
+    </mat-error>
 
-      <mat-error *ngIf="email?.errors?.['pattern'] && (email?.touched || email?.dirty)">
-        The email address you entered is invalid.
-      </mat-error>
-    </mat-form-field>
+    <mat-error *ngIf="email?.errors?.['pattern'] && (email?.touched || email?.dirty)">
+      The email address you entered is invalid.
+    </mat-error>
+  </mat-form-field>
 
 
-    <mat-form-field appearance="outline">
-      <mat-label>First Name</mat-label>
+  <mat-form-field appearance="outline">
+    <mat-label>First Name</mat-label>
 
-      <input matInput required formControlName="firstName">
+    <input matInput required formControlName="firstName">
 
-      <mat-error *ngIf="firstName?.errors?.['required'] && (firstName?.touched || firstName?.dirty)">
-        Your first name is required.
-      </mat-error>
-    </mat-form-field>
+    <mat-error *ngIf="firstName?.errors?.['required'] && (firstName?.touched || firstName?.dirty)">
+      Your first name is required.
+    </mat-error>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Last Name</mat-label>
+  <mat-form-field appearance="outline">
+    <mat-label>Last Name</mat-label>
 
-      <input matInput required formControlName="lastName">
+    <input matInput required formControlName="lastName">
 
-      <mat-error *ngIf="lastName?.errors?.['required'] && (lastName?.touched || lastName?.dirty)">
-        Your last name is required.
-      </mat-error>
-    </mat-form-field>
+    <mat-error *ngIf="lastName?.errors?.['required'] && (lastName?.touched || lastName?.dirty)">
+      Your last name is required.
+    </mat-error>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Password</mat-label>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
 
-      <input matInput required type="password" formControlName="password">
+    <input matInput required type="password" formControlName="password">
 
-      <mat-error *ngIf="password?.errors?.['required'] && (password?.touched || password?.dirty)">
-        A password is required.
-      </mat-error>
+    <mat-error *ngIf="password?.errors?.['required'] && (password?.touched || password?.dirty)">
+      A password is required.
+    </mat-error>
 
-      <mat-error *ngIf="password?.errors?.['minlength'] && (password?.touched || password?.dirty)">
-        Your password must contain at least {{ password?.errors?.['minlength']?.requiredLength }} characters.
-      </mat-error>
+    <mat-error *ngIf="password?.errors?.['minlength'] && (password?.touched || password?.dirty)">
+      Your password must contain at least {{ password?.errors?.['minlength']?.requiredLength }} characters.
+    </mat-error>
 
-      <mat-error *ngIf="password?.errors?.['pattern'] && (password?.touched || password?.dirty)">
-        Your password must contain at least 1 lowercase letter, 1 uppercase letter, 1 numeric character, one of these characters: !@#$%^&*
-      </mat-error>
-    </mat-form-field>
+    <mat-error *ngIf="password?.errors?.['pattern'] && (password?.touched || password?.dirty)">
+      Your password must contain at least 1 lowercase letter, 1 uppercase letter, 1 numeric character, one of these characters: !@#$%^&*
+    </mat-error>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Confirm Password</mat-label>
+  <mat-form-field appearance="outline">
+    <mat-label>Confirm Password</mat-label>
 
-      <input matInput required type="password" formControlName="confirmPassword">
+    <input matInput required type="password" formControlName="confirmPassword">
 
-      <mat-error *ngIf="confirmPassword?.errors?.['required'] && (confirmPassword?.touched || confirmPassword?.dirty)">
-        You must confirm your password.
-      </mat-error>
+    <mat-error *ngIf="confirmPassword?.errors?.['required'] && (confirmPassword?.touched || confirmPassword?.dirty)">
+      You must confirm your password.
+    </mat-error>
 
-      <mat-error *ngIf="confirmPassword?.errors?.['minlength'] && (confirmPassword?.touched || confirmPassword?.dirty)">
-        Your password must contain at least {{ password?.errors?.['minlength']?.requiredLength }} characters.
-      </mat-error>
+    <mat-error *ngIf="confirmPassword?.errors?.['minlength'] && (confirmPassword?.touched || confirmPassword?.dirty)">
+      Your password must contain at least {{ password?.errors?.['minlength']?.requiredLength }} characters.
+    </mat-error>
 
-      <mat-error *ngIf="confirmPassword?.errors?.['pattern'] && (confirmPassword?.touched || confirmPassword?.dirty)">
-        Your password must contain at least 1 lowercase letter, 1 uppercase letter, 1 numeric character, one of these characters: !@#$%^&*
-      </mat-error>
+    <mat-error *ngIf="confirmPassword?.errors?.['pattern'] && (confirmPassword?.touched || confirmPassword?.dirty)">
+      Your password must contain at least 1 lowercase letter, 1 uppercase letter, 1 numeric character, one of these characters: !@#$%^&*
+    </mat-error>
 
-    </mat-form-field>
+  </mat-form-field>
 
-    <div class="misc-errors" *ngIf="registrationForm.errors || error">
-      <mat-error *ngIf="error">
-        {{ error }}
-      </mat-error>
+  <div class="misc-errors" *ngIf="registrationForm.errors || error">
+    <mat-error *ngIf="error">
+      {{ error }}
+    </mat-error>
 
-      <mat-error *ngIf="registrationForm.errors?.['passwordsDoNotMatch'] && confirmPassword?.touched">
-        The passwords do not match!
-      </mat-error>
-    </div>
-
-    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-
-    <button mat-flat-button color="primary" [disabled]="!registrationForm.valid">Register</button>
-  </form>
-
-  <div class="footer">
-    <a routerLink="/auth/login">Login</a>
+    <mat-error *ngIf="registrationForm.errors?.['passwordsDoNotMatch'] && confirmPassword?.touched">
+      The passwords do not match!
+    </mat-error>
   </div>
+
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+  <button mat-flat-button color="primary" [disabled]="!registrationForm.valid">Register</button>
+</form>
+
+<div class="footer">
+  <a routerLink="/auth/login">Login</a>
 </div>
