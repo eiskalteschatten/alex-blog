@@ -1,85 +1,20 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="form">
-  <mat-form-field appearance="outline">
-    <mat-label>Email Address</mat-label>
-
-    <input matInput required formControlName="email" type="email">
-
-    <mat-error *ngIf="email?.errors?.['required'] && (email?.touched || email?.dirty)">
-      An email address is required.
-    </mat-error>
-
-    <mat-error *ngIf="email?.errors?.['pattern'] && (email?.touched || email?.dirty)">
-      The email address you entered is invalid.
-    </mat-error>
-  </mat-form-field>
-
-
-  <mat-form-field appearance="outline">
-    <mat-label>First Name</mat-label>
-
-    <input matInput required formControlName="firstName">
-
-    <mat-error *ngIf="firstName?.errors?.['required'] && (firstName?.touched || firstName?.dirty)">
-      Your first name is required.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Last Name</mat-label>
-
-    <input matInput required formControlName="lastName">
-
-    <mat-error *ngIf="lastName?.errors?.['required'] && (lastName?.touched || lastName?.dirty)">
-      Your last name is required.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Password</mat-label>
-
-    <input matInput required type="password" formControlName="password">
-
-    <mat-error *ngIf="password?.errors?.['required'] && (password?.touched || password?.dirty)">
-      A password is required.
-    </mat-error>
-
-    <mat-error *ngIf="password?.errors?.['minlength'] && (password?.touched || password?.dirty)">
-      Your password must contain at least {{ password?.errors?.['minlength']?.requiredLength }} characters.
-    </mat-error>
-
-    <mat-error *ngIf="password?.errors?.['pattern'] && (password?.touched || password?.dirty)">
-      Your password must contain at least 1 lowercase letter, 1 uppercase letter, 1 numeric character, one of these characters: !@#$%^&*
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Confirm Password</mat-label>
-
-    <input matInput required type="password" formControlName="confirmPassword">
-
-    <mat-error *ngIf="confirmPassword?.errors?.['required'] && (confirmPassword?.touched || confirmPassword?.dirty)">
-      You must confirm your password.
-    </mat-error>
-
-    <mat-error *ngIf="confirmPassword?.errors?.['minlength'] && (confirmPassword?.touched || confirmPassword?.dirty)">
-      Your password must contain at least {{ password?.errors?.['minlength']?.requiredLength }} characters.
-    </mat-error>
-
-    <mat-error *ngIf="confirmPassword?.errors?.['pattern'] && (confirmPassword?.touched || confirmPassword?.dirty)">
-      Your password must contain at least 1 lowercase letter, 1 uppercase letter, 1 numeric character, one of these characters: !@#$%^&*
-    </mat-error>
-
-  </mat-form-field>
-
-  <div class="misc-errors" *ngIf="registrationForm.errors || error">
-    <mat-error *ngIf="error">
+  <!-- TODO: use a global error component once it exists -->
+  <div class="misc-errors" *ngIf="(registrationForm.errors && confirmPassword?.touched) || error">
+    <ng-container *ngIf="error">
       {{ error }}
-    </mat-error>
+    </ng-container>
 
-    <mat-error *ngIf="registrationForm.errors?.['passwordsDoNotMatch'] && confirmPassword?.touched">
+    <ng-container *ngIf="registrationForm.errors?.['passwordsDoNotMatch'] && confirmPassword?.touched">
       The passwords do not match!
-    </mat-error>
+    </ng-container>
   </div>
+
+  <blog-input [required]="true" [control]="email" type="email" label="Email Address" [large]="true" [fullWidth]="true" [error]="emailError" />
+  <blog-input [required]="true" [control]="firstName" label="First Name" [large]="true" [fullWidth]="true" [error]="firstNameError" />
+  <blog-input [required]="true" [control]="lastName" label="Last Name" [large]="true" [fullWidth]="true" [error]="lastNameError" />
+  <blog-input [required]="true" type="password" [control]="password" label="Password" [large]="true" [fullWidth]="true" [error]="passwordError" />
+  <blog-input [required]="true" type="password" [control]="confirmPassword" label="Confirm Password" [large]="true" [fullWidth]="true" [error]="confirmPasswordError" />
 
   <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 

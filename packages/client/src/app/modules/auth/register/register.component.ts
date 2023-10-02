@@ -51,6 +51,76 @@ export class RegisterComponent implements OnInit {
   get password() { return this.registrationForm.get('password'); }
   get confirmPassword() { return this.registrationForm.get('confirmPassword'); }
 
+  get emailError(): string | undefined {
+    if (!this.email?.touched && !this.email?.dirty) {
+      return;
+    }
+
+    if (this.email?.errors?.['required']) {
+      return 'An email address is required.';
+    }
+
+    if (this.email?.errors?.['pattern']) {
+      return 'The email address you entered is invalid.';
+    }
+  }
+
+  get firstNameError(): string | undefined {
+    if (!this.firstName?.touched && !this.firstName?.dirty) {
+      return;
+    }
+
+    if (this.firstName?.errors?.['required']) {
+      return 'Your first name is required.';
+    }
+  }
+
+  get lastNameError(): string | undefined {
+    if (!this.lastName?.touched && !this.lastName?.dirty) {
+      return;
+    }
+
+    if (this.lastName?.errors?.['required']) {
+      return 'Your last name is required.';
+    }
+  }
+
+  get confirmPasswordError(): string | undefined {
+    if (!this.confirmPassword?.touched && !this.confirmPassword?.dirty) {
+      return;
+    }
+
+    if (this.confirmPassword?.errors?.['required']) {
+      return 'You must confirm your password.';
+    }
+
+    if (this.confirmPassword?.errors?.['minlength']) {
+      return `Your password must contain at least ${this.confirmPassword?.errors?.['minlength']?.requiredLength} characters.`;
+    }
+
+    if (this.confirmPassword?.errors?.['pattern']) {
+      return 'Your password must contain at least 1 lowercase letter, 1 uppercase letter, 1 numeric character, one of these characters: !@#$%^&*';
+    }
+  }
+
+  get passwordError(): string | undefined {
+    if (!this.password?.touched && !this.password?.dirty) {
+      return;
+    }
+
+    if (this.password?.errors?.['required']) {
+      return 'A password is required.';
+    }
+
+    if (this.password?.errors?.['minlength']) {
+      return `Your password must contain at least ${this.password?.errors?.['minlength']?.requiredLength} characters.`;
+    }
+
+    if (this.password?.errors?.['pattern']) {
+      return 'Your password must contain at least 1 lowercase letter, 1 uppercase letter, 1 numeric character, one of these characters: !@#$%^&*';
+    }
+  }
+
   onSubmit() {
     if (this.registrationForm.valid) {
       this.isLoading = true;

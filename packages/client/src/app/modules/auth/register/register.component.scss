@@ -1,11 +1,16 @@
+@import "../../../../assets/styles/variables";
+
 .form {
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  gap: 5px;
+  gap: 15px;
 
   .misc-errors {
-    margin-bottom: 20px;
+    background-color: $errorColor;
+    color: $lightColor;
+    padding: 8px 10px;
+    border-radius: $borderRadius;
   }
 }
 
