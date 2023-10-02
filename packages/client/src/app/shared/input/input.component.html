@@ -3,7 +3,7 @@
 
   <div class="input-icon" [ngClass]="{ focused: isFocused, error: error }">
     <div *ngIf="icon" class="icon">{{ icon }}</div>
-    <input [type]="type" [required]="required" [formControl]="control" onfocus="onFocus()" onblur="onBlur()" class="input" [ngClass]="{ large: large, 'full-width': fullWidth }" />
+    <input [type]="type" [required]="required" [formControl]="control" (focus)="onFocus()" (blur)="onBlur()" class="input" [ngClass]="{ large: large, 'full-width': fullWidth }" />
   </div>
 
   <div *ngIf="error" class="error-message">{{ error }}</div>
