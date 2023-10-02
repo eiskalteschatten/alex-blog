@@ -5,6 +5,10 @@ import { authGuard, reverseAuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () => import('./modules/homepage/homepage.module').then(m => m.HomepageModule),
+  },
+  {
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
     canActivateChild: [authGuard],
