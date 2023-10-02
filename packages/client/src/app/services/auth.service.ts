@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 
 import { environment } from '~environments/environment';
 
+import { LocalStorageService } from './local-storage.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,9 +16,10 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private localStoragService: LocalStorageService
   ) {
-    const userStr = localStorage.getItem('user');
+    const userStr = this.localStoragService.getItem('user');
 
     if (userStr) {
       this.user = JSON.parse(userStr);
@@ -28,28 +31,28 @@ export class AuthService {
   }
 
   get accessToken(): string | null {
-    return localStorage.getItem('accessToken');
+    return this.localStoragService.getItem('accessToken');
   }
 
   set accessToken(token: string | undefined) {
     if (token) {
-      localStorage.setItem('accessToken', token);
+      this.localStoragService.setItem('accessToken', token);
     }
     else {
-      localStorage.removeItem('accessToken');
+      this.localStoragService.removeItem('accessToken');
     }
   }
 
   get refreshToken(): string | null {
-    return localStorage.getItem('refreshToken');
+    return this.localStoragService.getItem('refreshToken');
   }
 
   set refreshToken(token: string | undefined) {
     if (token) {
-      localStorage.setItem('refreshToken', token);
+      this.localStoragService.setItem('refreshToken', token);
     }
     else {
-      localStorage.removeItem('refreshToken');
+      this.localStoragService.removeItem('refreshToken');
     }
   }
 
@@ -63,20 +66,20 @@ export class AuthService {
 
   logout(): void {
     this.user = undefined;
-    localStorage.removeItem('user');
+    this.localStoragService.removeItem('user');
 
     this.accessToken = undefined;
-    localStorage.removeItem('accessToken');
+    this.localStoragService.removeItem('accessToken');
 
     this.refreshToken = undefined;
-    localStorage.removeItem('refreshToken');
+    this.localStoragService.removeItem('refreshToken');
 
     this.router.navigate(['/auth/login']);
   }
 
   setUserAuthData(data: UserLoginReply): void {
     this.user = data.user;
-    localStorage.setItem('user', JSON.stringify(data.user));
+    this.localStoragService.setItem('user', JSON.stringify(data.user));
 
     this.accessToken = data.accessToken;
     this.refreshToken = data.refreshToken;
