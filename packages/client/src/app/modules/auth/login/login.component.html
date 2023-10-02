@@ -1,12 +1,11 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+  <!-- TODO: use a global error component once it exists -->
+  <div class="misc-errors" *ngIf="error">
+    {{ error }}
+  </div>
+
   <blog-input [required]="true" [control]="email" type="email" label="Email Address" [formGroup]="loginForm" [large]="true" [fullWidth]="true" [error]="emailError" />
   <blog-input [required]="true" type="password" [control]="password" label="Password" [large]="true" [fullWidth]="true" [error]="passwordError"  />
-
-  <div class="misc-errors" *ngIf="error">
-    <mat-error *ngIf="error">
-      {{ error }}
-    </mat-error>
-  </div>
 
   <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 
