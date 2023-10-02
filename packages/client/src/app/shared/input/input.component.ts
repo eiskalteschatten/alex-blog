@@ -14,12 +14,17 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/f
   ],
 })
 export class InputComponent implements ControlValueAccessor {
-  value = '';
-
   @Input() required = false;
   @Input() type = 'text';
   @Input() control: any = new FormControl();
   @Input() label = '';
+  @Input() fullWidth = false;
+  @Input() large = false;
+  @Input() error?: string;
+  @Input() icon?: string; // TODO: how should I handle this?
+
+  value = '';
+  isFocused = false;
 
   writeValue(value: string): void {
     this.value = value ? value : '';
@@ -32,5 +37,13 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   setDisabledState?(isDisabled: boolean): void {
+  }
+
+  onFocus(): void {
+    this.isFocused = true;
+  }
+
+  onBlur(): void {
+    this.isFocused = false;
   }
 }
