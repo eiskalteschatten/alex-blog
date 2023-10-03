@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from './input/input.component';
 import { CardComponent } from './card/card.component';
 import { ButtonComponent } from './button/button.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ButtonComponent } from './button/button.component';
     CardComponent,
     CardComponent,
     ButtonComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { ButtonComponent } from './button/button.component';
     InputComponent,
     CardComponent,
     ButtonComponent,
+    SpinnerComponent,
   ],
 })
 export class SharedModule {}
