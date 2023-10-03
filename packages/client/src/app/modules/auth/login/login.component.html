@@ -9,7 +9,7 @@
 
   <!-- <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
   <button mat-flat-button color="primary" [disabled]="!loginForm.valid">Log In</button> -->
-  <blog-button [showLoader]="isLoading" [primary]="true" [large]="true">Log In</blog-button>
+  <blog-button [showLoader]="isLoading" [primary]="true" [large]="true" type="submit" [disabled]="!loginForm.valid">Log In</blog-button>
 </form>
 
 <div class="footer">

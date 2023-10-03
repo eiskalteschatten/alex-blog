@@ -17,6 +17,8 @@ export class ButtonComponent {
   @Input() centerContent = false;
   @Input() blackOrWhite = false;
   @Input() transparentBg = false;
+  @Input() type = 'button';
+  @Input() disabled = false;
 
   get classes(): any {
     return {
