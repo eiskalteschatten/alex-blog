@@ -7,12 +7,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { InputComponent } from './input/input.component';
 import { CardComponent } from './card/card.component';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   declarations: [
     InputComponent,
     CardComponent,
     CardComponent,
+    ButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import { CardComponent } from './card/card.component';
     ReactiveFormsModule,
     InputComponent,
     CardComponent,
+    ButtonComponent,
   ],
 })
 export class SharedModule {}
