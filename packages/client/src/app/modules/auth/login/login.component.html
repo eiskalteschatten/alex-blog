@@ -7,9 +7,9 @@
   <blog-input [required]="true" [control]="email" type="email" label="Email Address" [large]="true" [fullWidth]="true" [error]="emailError" />
   <blog-input [required]="true" type="password" [control]="password" label="Password" [large]="true" [fullWidth]="true" [error]="passwordError" />
 
-  <!-- <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-  <button mat-flat-button color="primary" [disabled]="!loginForm.valid">Log In</button> -->
-  <blog-button [showLoader]="isLoading" [primary]="true" [large]="true" type="submit" [disabled]="!loginForm.valid">Log In</blog-button>
+  <div class="text-center mt-3">
+    <blog-button [showLoader]="isLoading" [primary]="true" [large]="true" type="submit" [disabled]="!loginForm.valid">Log In</blog-button>
+  </div>
 </form>
 
 <div class="footer">

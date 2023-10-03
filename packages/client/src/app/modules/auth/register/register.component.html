@@ -16,9 +16,9 @@
   <blog-input [required]="true" type="password" [control]="password" label="Password" [large]="true" [fullWidth]="true" [error]="passwordError" />
   <blog-input [required]="true" type="password" [control]="confirmPassword" label="Confirm Password" [large]="true" [fullWidth]="true" [error]="confirmPasswordError" />
 
-  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-
-  <button mat-flat-button color="primary" [disabled]="!registrationForm.valid">Register</button>
+  <div class="text-center mt-3">
+    <blog-button [showLoader]="isLoading" [primary]="true" [large]="true" type="submit" [disabled]="!registrationForm.valid">Register</blog-button>
+  </div>
 </form>
 
 <div class="footer">
