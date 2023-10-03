@@ -1,6 +1,6 @@
 <button class="button" [ngClass]="classes" [type]="type" [disabled]="showLoader || disabled">
   <div class="content" [ngClass]="{ 'center-content': centerContent }">
-    <div class="loader" *ngif="showLoader">
+    <div class="loader" *ngIf="showLoader">
       <blog-spinner />
     </div>
 
