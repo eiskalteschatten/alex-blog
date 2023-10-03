@@ -15,4 +15,18 @@ export class ButtonComponent {
   @Input() showLoader = false;
   @Input() fullWidth = false;
   @Input() centerContent = false;
+  @Input() blackOrWhite = false;
+  @Input() transparentBg = false;
+
+  get classes(): any {
+    return {
+      'full-width': this.fullWidth,
+      primary: this.primary,
+      'icon-button': this.iconButton,
+      'delete-button': this.deleteButton,
+      large: this.large,
+      'black-or-white': this.blackOrWhite,
+      'transparent-bg': this.transparentBg,
+    };
+  }
 }
