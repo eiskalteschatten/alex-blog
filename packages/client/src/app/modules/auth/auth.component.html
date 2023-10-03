@@ -1,7 +1,10 @@
 <div class="auth-page">
   <blog-card>
     <div class="card-content">
-      <img src="/assets/images/icon-monotone-black.svg" class="logo">
+      <picture>
+        <source srcSet="/assets/images/icon-monotone-white.svg" media="(prefers-color-scheme: dark)" />
+        <img src="/assets/images/icon-monotone-black.svg" class="logo">
+      </picture>
 
       <router-outlet></router-outlet>
     </div>
