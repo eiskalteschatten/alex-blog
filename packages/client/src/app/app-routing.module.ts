@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { authGuard, reverseAuthGuard } from './guards/auth.guard';
+import { adminAuthGuard, authGuard, reverseAuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -9,9 +9,14 @@ const routes: Routes = [
     loadChildren: () => import('./modules/homepage/homepage.module').then(m => m.HomepageModule),
   },
   {
+    path: 'account',
+    loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule),
+    canActivateChild: [authGuard],
+  },
+  {
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
-    canActivateChild: [authGuard],
+    canActivateChild: [adminAuthGuard],
   },
   {
     path: 'auth',
