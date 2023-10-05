@@ -18,6 +18,10 @@ const routes: Routes = [
         loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
         canActivateChild: [authGuard],
       },
+      {
+        path: '**',
+        loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule),
+      },
     ],
   },
 ];
