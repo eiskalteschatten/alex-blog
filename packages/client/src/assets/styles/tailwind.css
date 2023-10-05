@@ -9,7 +9,12 @@
   }
 
   a:hover {
-    color: var(--primary-color);
     text-decoration: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    a {
+      color: var(--primary-color-lighter);
+    }
   }
 }

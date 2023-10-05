@@ -8,6 +8,7 @@
   --color: #{$lightColor};
   --opposite-color: #{$darkColor};
   --primary-color: #{$primaryColor};
+  --primary-color-lighter: #{$primaryColorLighter};
   --border-color: #{$lightBorderColor};
   --shadow-color: #{$lightShadowColor};
 }
@@ -20,7 +21,6 @@
     --sidebar-background-color: #{$darkSidebarBg};
     --color: #{$darkColor};
     --opposite-color: #{$lightColor};
-    --primary-color: #{$primaryColor};
     --border-color: #{$darkBorderColor};
     --shadow-color: #{$darkShadowColor};
   }

@@ -1,14 +1,14 @@
-$primaryColor: #0d589b;
-$primaryColorLighter: #d1e3f9;
-
-$paletteBlue: #4285f4;
-$paletteDarkBlue: #01579b;
+$paletteBlue: #579DFF;
+$paletteDarkBlue: #092957;
 $paletteYellow: #fbbc05;
 $paletteRed: #ea4335;
 $paletteGreen: #24a853;
 $paletteOrange: #ff8f00;
 $paletteDarkGray: #2F3436;
 $paletteLightGray: #D3D3D3;
+
+$primaryColor: $paletteDarkBlue;
+$primaryColorLighter: $paletteBlue;
 
 $lightBg: #ffffff;
 $lightSecondaryBg: #ededed;
