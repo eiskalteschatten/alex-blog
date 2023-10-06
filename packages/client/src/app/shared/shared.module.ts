@@ -7,6 +7,7 @@ import { InputComponent } from './input/input.component';
 import { CardComponent } from './card/card.component';
 import { ButtonComponent } from './button/button.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { AccountMenuComponent } from './account-menu/account-menu.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     CardComponent,
     ButtonComponent,
     SpinnerComponent,
+    AccountMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     CardComponent,
     ButtonComponent,
     SpinnerComponent,
+    AccountMenuComponent,
   ],
 })
 export class SharedModule {}

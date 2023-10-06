@@ -5,7 +5,7 @@ import { HeaderComponent } from '~/layout/header/header.component';
 
 import { FrontendRoutingModule } from './frontend-routing.module';
 import { FrontendComponent } from './frontend.component';
-
+import { SharedModule } from '~/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +14,7 @@ import { FrontendComponent } from './frontend.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     FrontendRoutingModule
   ]
 })

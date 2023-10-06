@@ -1,11 +1,14 @@
-<header class="header flex items-center p-2">
-  <div class="logo">
-    <picture>
-      <source srcSet="/assets/images/icon-monotone-white.svg" media="(prefers-color-scheme: dark)" />
-      <img src="/assets/images/icon-monotone-black.svg" class="logo">
-    </picture>
+<header class="flex items-center p-2 justify-between">
+  <div class="flex items-center left-side">
+    <div class="logo">
+      <picture>
+        <source srcSet="/assets/images/icon-monotone-white.svg" media="(prefers-color-scheme: dark)" />
+        <img src="/assets/images/icon-monotone-black.svg" class="logo">
+      </picture>
+    </div>
+    <div class="title">
+      Blog
+    </div>
   </div>
-  <div class="title">
-    Blog
-  </div>
+  <blog-account-menu></blog-account-menu>
 </header>
